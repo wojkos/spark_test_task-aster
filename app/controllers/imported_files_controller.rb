@@ -10,6 +10,8 @@ class ImportedFilesController < ApplicationController
     if @imported_file.save
         flash[:notice] = "Thank you for your submission..."
         redirect_to :action => "index"
+        ProductsImporterService.new(params[:imported_file][:data]
+          ).import
     else
         flash[:error] = "There was a problem submitting your imported_file."
         render :action => "new"
