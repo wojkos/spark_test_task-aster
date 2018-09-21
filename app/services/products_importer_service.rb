@@ -6,6 +6,9 @@ class ProductsImporterService
   end
 
   def import
+    if Spree::ShippingCategory.count == 0
+      Spree::ShippingCategory.create!(name: 'Default')
+    end 
     CSV.foreach(@file.path, headers: true, col_sep: ';') do |row|
       unless row['name'].nil?
         if Spree::Product.find_by_slug(row['slug']).nil?
