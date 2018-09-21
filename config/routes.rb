@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :imported_files
+  get 'admin/import', to: 'imported_files#new', as: 'imported_files'
 
   # This line mounts Spree's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to
