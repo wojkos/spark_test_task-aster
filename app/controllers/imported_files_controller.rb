@@ -8,20 +8,14 @@ class ImportedFilesController < ApplicationController
     @imported_file.upload_file
 
     if @imported_file.save
-        flash[:notice] = "Thank you for your submission..."
-        redirect_to :action => "index"
-        ProductsImporterService.new(params[:imported_file][:data]
-          ).import
+      redirect_to '/admin'
+      ProductsImporterService.new(params[:imported_file][:data]).import
     else
-        flash[:error] = "There was a problem submitting your imported_file."
-        render :action => "new"
+      flash[:error] = 'There was a problem with your imported_file.'
+      render action: 'new'
     end
   end
 
-  def index
-    @imported_files = ImportedFile.all
-  end
-  
   private
 
   def imported_files_params

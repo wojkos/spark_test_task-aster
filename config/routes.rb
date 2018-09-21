@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post 'admin/import', to: 'imported_files#create'
   get 'admin/import', to: 'imported_files#new', as: 'imported_files'
 
   # This line mounts Spree's routes at the root of your application.
